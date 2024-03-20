@@ -1,46 +1,119 @@
-# Django ToDo list
+# Django ToDo List Kubernetes Deployment
 
-This is a todo list web application with basic features of most web apps, i.e., accounts/login, API, and interactive UI. To do this task, you will need:
+This guide provides step-by-step instructions for deploying the Django ToDo list application on a Kubernetes cluster. This includes setting up ConfigMaps, Secrets, and a Deployment to manage the application environment.
 
-- CSS | [Skeleton](http://getskeleton.com/)
-- JS  | [jQuery](https://jquery.com/)
+## Prerequisites
 
-## Explore
+- Kubernetes cluster
+- kubectl configured to interact with your cluster
+- Docker image of the Django ToDo list application
 
-Try it out by installing the requirements (the following commands work only with Python 3.8 and higher, due to Django 4):
+## Setup Instructions
 
-```
-pip install -r requirements.txt
-```
+### Step 1: Namespace Creation
 
-Create a database schema:
+Ensure that the `todoapp` namespace exists. If not, create it using the following command:
 
-```
-python manage.py migrate
-```
-
-And then start the server (default is http://localhost:8000):
-
-```
-python manage.py runserver
+```bash
+kubectl create namespace todoapp
 ```
 
-Now you can browse the [API](http://localhost:8000/api/) or start on the [landing page](http://localhost:8000/).
+### Step 2: Creating ConfigMap
 
-## Task
+The ConfigMap stores the environment configuration for the Django application.
 
-Create a kubernetes manifest for a pod which will containa ToDo app container:
+1. Create a configMap.yml file with the following content:
 
-1. Fork this repository.
-1. Create a `confgiMap.yml` file for ConfigMap resource.
-1. ConfigMap requirements:
-3.1. ConfigMap should have a `PYTHONUNBUFFERED` values set
-3.2. Deployment shoyld use this ConfigMap and set `PYTHONUNBUFFERED` environment variable
-1. Create a `secret.yml` file for Secret resource.
-1. Secret requirements:
-5.1. Secret should have a `SECRET_KEY` value set
-5.2. Deployment should use this Secret and set `SECRET_KEY` environment variable
-5.3. Application should use this secret instead of one hardcoded in `settings.py`
-1. `README.md` should have commands to apply all the changes
-1. `README.md` should have instructuions on how to validate the changes
-1. Create PR with your changes and attach it for validation on a platform.
+```bash
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todoapp-config
+  namespace: todoapp
+data:
+  PYTHONUNBUFFERED: "1"
+```
+
+2. Apply the ConfigMap using the following command:
+```bash
+kubectl apply -f configMap.yml
+```
+
+### Step 3: Creating Secret
+
+The Secret will store sensitive information, like the Django SECRET_KEY.
+
+1. Create a secret.yml file with the following content:
+
+```bash
+apiVersion: v1
+kind: Secret
+metadata:
+  name: todoapp-secrets
+  namespace: todoapp
+type: Opaque
+data:
+  SECRET_KEY: <base64-secret-key>
+```
+
+Replace <base64-secret-key> with your base64 encoded Django SECRET_KEY.
+
+Use the command on your terminal:
+```bash
+echo -n "your-secret-key" | base64
+```
+
+2.Apply the Secret using the following command:
+
+```bash
+kubectl apply -f secret.yml
+```
+
+### Step 4: Deploying the Application
+
+1. Ensure the deployment.yml file includes the environment variables from the ConfigMap and Secret.
+
+The env section of your containers should look like this:
+```bash
+env:
+  - name: "PYTHONUNBUFFERED"
+    valueFrom:
+      configMapKeyRef:
+        name: todoapp-config
+        key: PYTHONUNBUFFERED
+  - name: "SECRET_KEY"
+    valueFrom:
+      secretKeyRef:
+        name: todoapp-secret
+        key: SECRET_KEY
+```
+
+2. Apply the deployment using the following command:
+
+```bash
+kubectl apply -f deployment.yml
+```
+
+### Validation Instructions
+To ensure that your application is running correctly:
+
+1. Check the Deployment status:
+
+```bash
+kubectl -n todoapp get deployments
+```
+
+2. Verify the Pods are running:
+
+```bash
+kubectl -n todoapp get pods
+```
+
+3. Check the application logs:
+
+```bash
+kubectl -n todoapp logs <pod-name>
+```
+
+Replace <pod-name> with the name of your pod.
+
