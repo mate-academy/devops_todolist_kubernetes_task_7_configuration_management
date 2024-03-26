@@ -44,3 +44,23 @@ Create a kubernetes manifest for a pod which will containa ToDo app container:
 1. `README.md` should have commands to apply all the changes
 1. `README.md` should have instructuions on how to validate the changes
 1. Create PR with your changes and attach it for validation on a platform.
+
+
+# Applying Changes
+
+To apply the ConfigMap and Secret to your Kubernetes cluster, use the following commands:
+
+`kubectl apply -f .infrastructure/configMap.yml -n todoapp`
+`kubectl apply -f .infrastructure/secret.yml -n todoapp`
+`kubectl apply -f .infrastructure/deployment.yml -n todoapp`
+# Validating Changes
+
+To validate the changes, you can check if the ConfigMap and Secret have been successfully applied:
+
+`kubectl get configmap myapp-config`
+`kubectl get secret myapp-secret`
+
+
+To ensure your deployment is using these values, describe your deployment and look for the environment variables:
+
+`kubectl describe deployment <your_deployment_name>`
