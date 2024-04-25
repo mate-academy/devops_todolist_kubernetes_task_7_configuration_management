@@ -20,3 +20,4 @@ spec:
             - -c
             - curl todoapp-nodeport.todoapp.svc.cluster.local/api/ready
           restartPolicy: OnFailure
+
