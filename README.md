@@ -44,3 +44,37 @@ Create a kubernetes manifest for a pod which will containa ToDo app container:
 1. `README.md` should have commands to apply all the changes
 1. `README.md` should have instructuions on how to validate the changes
 1. Create PR with your changes and attach it for validation on a platform.
+
+In order to apply changes you should execute the next steps:
+kubectl delete namespace <old_namespace>
+This action delete all objects that belongs to this namespace
+
+Then apply the next yml-files
+To create namespace
+kubectl apply -f namespace.yml
+
+To deploy the application
+kubectl apply -f configMap.yml
+kubectl apply -f secret.yml
+kubectl apply -f deployment.yml
+kubectl apply -f hpa.yml
+
+To get access to the application from outside (through your browser)
+kubectl apply -f nodeport.yml
+
+To check configMap
+kubectl get configMap
+
+To review environment values
+kubectl get pods
+kubectl exec -it <name_application_pod> -- sh
+
+Then, inside the container, execute the command
+printenv
+
+You can see the list of environment valueses. There you can see environment values PYTHONUNBUFFERED: "1"
+
+To review secrets values
+kubectl get secrets
+kubectl get secret <name_secret> -o jsonpath=’{.data.*}’
+
