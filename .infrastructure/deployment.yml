@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: todoapp
-        image: ikulyk404/todoapp:3.0.0
+        image: yegorv/todoapp:test
         resources:
           requests:
             memory: "256Mi"
@@ -32,7 +32,7 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: todoconfig
-                key: PYTHONUNBUFFERED
+              key: PYTHONUNBUFFERED
         - name: SECRET_KEY
           valueFrom:
             secretKeyRef:
