@@ -13,8 +13,8 @@ spec:
         app: todoapp
     spec:
       containers:
-      - name: todoapp
-        image: radial/busyboxplus:curl
+        - name: curlcontainer
+          image: curlimages/curl:latest
         command: ["/bin/sh", "-c", "while sleep 5; do curl todoapp-service.todoapp.svc.cluster.local; done"]
         resources:
           requests:
