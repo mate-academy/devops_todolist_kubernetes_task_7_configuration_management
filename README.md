@@ -44,3 +44,24 @@ Create a kubernetes manifest for a pod which will containa ToDo app container:
 1. `README.md` should have commands to apply all the changes
 1. `README.md` should have instructuions on how to validate the changes
 1. Create PR with your changes and attach it for validation on a platform.
+
+
+# Configuration Instructions
+
+kubectl apply -f configMap.yml
+
+kubectl apply -f secret.yml
+
+kubectl apply -f deployment.yml
+
+kubectl get configmap -n mateapp
+kubectl describe configmap <configmap-name> -n mateapp
+
+||||||||||||VALIDATE||||||||||||
+
+kubectl get secret -n mateapp
+kubectl describe secret <secret-name> -n mateapp
+kubectl get deployment -n mateapp
+kubectl describe deployment todoapp -n mateapp
+kubectl get pods -n mateapp
+kubectl port-forward deployment/todoapp 8080:8080 -n mateapp
