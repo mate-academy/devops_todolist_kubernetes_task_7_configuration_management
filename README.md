@@ -47,6 +47,4 @@ Create a kubernetes manifest for a pod which will containa ToDo app container:
 
 run these commands to create infrastructure: -`kubectl apply -f namespace.yml` -`kubectl apply -f clusterip.yml` -`kubectl apply -f deployment.yml` -`kubectl apply -f daemonset.yml` -`kubectl apply -f cronjob.yml`
 
-to validate changes `kubectl -n todoapp exec -it <your pod app name> -- sh` and from there run `printenv` or `get secret todoapp-secret -o jsonpath=’{.data.*}’ -n todoapp`
-
-# я трохи не зрозумів чому ключ через secret не відображається у поді якщо printenv викликати, але сам додаток працює. я новий імедж зробив де прописав ключ з enva. Змінні з мапа відображаюсться ок. Так і має бути?
+to validate changes `kubectl -n todoapp exec -it <your pod app name> -- sh` and from there run `printenv` or `get secret todoapp-secret -o jsonpath=’{.data.*}’ -n todoapp` or `kubectl describe secret todoapp-secret -n todoapp` to get the name of the secret or to get name and value for configmap.
