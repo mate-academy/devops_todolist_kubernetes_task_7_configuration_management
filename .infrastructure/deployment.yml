@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: todoapp
-        image: ikulyk404/todoapp:3.0.0
+        image: yegorv/todoapp:test
         resources:
           requests:
             memory: "256Mi"
@@ -29,7 +29,15 @@ spec:
             cpu: "150m"
         env:
         - name: PYTHONUNBUFFERED
-          value: "1"
+          valueFrom:
+            configMapKeyRef:
+              name: todoconfig
+              key: PYTHONUNBUFFERED
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: todosecrets
+              key: SECRET_KEY
         ports:
         - containerPort: 8080
         livenessProbe:
