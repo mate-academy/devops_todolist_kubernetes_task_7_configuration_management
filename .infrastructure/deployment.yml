@@ -29,7 +29,6 @@ spec:
             cpu: "150m"
         env:
         - name: PYTHONUNBUFFERED
-          value: "1"
         ports:
         - containerPort: 8080
         livenessProbe:
