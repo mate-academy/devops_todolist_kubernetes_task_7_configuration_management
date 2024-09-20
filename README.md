@@ -42,5 +42,53 @@ Create a kubernetes manifest for a pod which will containa ToDo app container:
 5.2. Deployment should use this Secret and set `SECRET_KEY` environment variable
 5.3. Application should use this secret instead of one hardcoded in `settings.py`
 1. `README.md` should have commands to apply all the changes
+
+Instruction:
+
+Apply configMap:
+
+```
+kubectl apply -f .infrastructure/confgiMap.yml
+```
+
+Apply secret:
+
+```
+kubectl apply -f .infrastructure/secret.yml
+```
+
+Reconfig deployment:
+
+```
+kubectl apply -f .infrastructure/deployment.yml 
+```
+
 1. `README.md` should have instructuions on how to validate the changes
+
+Check that configMap and Secret exist:
+
+```
+kubectl get configmap
+```
+
+```
+kubectl get secrets
+```
+
+Check pods:
+
+```
+kubectl get pod
+```
+
+Check env variables inside a pod:
+
+```
+kubectl exec -it todoapp-{random symbols} -- sh  
+```
+
+```
+printenv
+```
+
 1. Create PR with your changes and attach it for validation on a platform.
