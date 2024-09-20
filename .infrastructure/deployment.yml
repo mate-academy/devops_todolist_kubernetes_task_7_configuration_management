@@ -29,6 +29,15 @@ spec:
             cpu: "150m"
         env:
         - name: PYTHONUNBUFFERED
+          valueFrom:
+            configMapKeyRef:
+              name: python-ConfigMap-app 
+              key: PYTHONUNBUFFERED
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: app-secret  
+              key: SECRET_KEY
         ports:
         - containerPort: 8080
         livenessProbe:
