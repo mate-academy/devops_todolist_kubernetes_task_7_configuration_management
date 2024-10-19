@@ -62,6 +62,13 @@ kubectl get configmap todoapp-config -o jsonpath='{.data.PYTHONUNBUFFERED}'
 kubectl get secret todoapp-secret -o jsonpath='{.data.SECRET_KEY}'
 ```
 
+Check environment variables in the deployment:
+
+```bash
+kubectl exec -it deployment/todoapp -- env | grep PYTHONUNBUFFERED
+kubectl exec -it deployment/todoapp -- env | grep SECRET_KEY
+```
+
 Check if application is working:
 
 ```bash
