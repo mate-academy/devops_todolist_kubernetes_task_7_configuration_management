@@ -44,3 +44,37 @@ Create a Kubernetes manifest for a pod that will contain a ToDo app container:
 1. Create the `INSTRUCTION.md` with commands to apply all the changes
 1. `INSTRUCTION.md` should have instructions on how to validate the changes
 1. Create PR with your changes and attach it for validation on a platform.
+
+## How to apply changes
+
+```bash
+kubectl apply -f .infrasctructure/configMap.yml
+kubectl apply -f .infrasctructure/secret.yml
+kubectl apply -f .infrasctructure/deployment.yml
+```
+
+## How to validate changes
+
+Check if ConfigMap and Secret were created:
+
+```bash
+kubectl get configmap todoapp-config -o jsonpath='{.data.PYTHONUNBUFFERED}'
+kubectl get secret todoapp-secret -o jsonpath='{.data.SECRET_KEY}'
+```
+
+Check environment variables in the deployment:
+
+```bash
+kubectl exec -it deployment/todoapp -- env | grep PYTHONUNBUFFERED
+kubectl exec -it deployment/todoapp -- env | grep SECRET_KEY
+```
+
+Check if application is working:
+
+```bash
+kubectl port-forward deployment/todoapp 8080:8080
+```
+
+And then open http://localhost:8080/ in your browser.
+
+
