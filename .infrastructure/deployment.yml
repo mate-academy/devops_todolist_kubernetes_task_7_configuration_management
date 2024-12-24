@@ -30,7 +30,7 @@ spec:
         env:
         - name: PYTHONUNBUFFERED
           valueFrom:
-            confifMapKeyRef:
+            configMapKeyRef:
               name: app-config
               key: PYTHONUNBUFFERED
         - name: SECRET_KEY
