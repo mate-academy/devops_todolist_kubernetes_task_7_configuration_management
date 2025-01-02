@@ -30,6 +30,11 @@ spec:
         env:
         - name: PYTHONUNBUFFERED
           value: "1"
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: todoapp-secret  
+              key: SECRET_KEY      
         ports:
         - containerPort: 8080
         livenessProbe:
