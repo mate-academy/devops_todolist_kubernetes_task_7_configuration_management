@@ -29,7 +29,15 @@ spec:
             cpu: "150m"
         env:
         - name: PYTHONUNBUFFERED
-          value: "1"
+          valueFrom:
+            configMapKeyRef:
+              name: todoapp-config  # Ім'я ConfigMap
+                key: PYTHONUNBUFFERED  # Ключ у ConfigMap```
+        - name: SECRET_KEY
+         valueFrom:
+           secretKeyRef:
+              name: todoapp-secrets
+              key: SECRET_KEY
         ports:
         - containerPort: 8080
         livenessProbe:
