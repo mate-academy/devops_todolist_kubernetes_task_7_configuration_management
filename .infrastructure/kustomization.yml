@@ -1,0 +1,7 @@
+resources:
+  - namespace.yml
+  - clusterIp.yml
+  - nodeport.yml
+  - secret.yml
+  - confgiMap.yml
+  - deployment.yml
