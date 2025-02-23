@@ -29,8 +29,15 @@ spec:
             cpu: "150m"
         env:
         - name: PYTHONUNBUFFERED
-          value: "1"
-        ports:
+          valuefrom:
+            configMapKeyRef:
+              name: config
+              key: PYTHONUNBUFFERED
+        - name: SECRET_KEY
+          valuefrom:
+            secretKeyRef:
+              name: secrets
+              key: SECRET_KEY
         - containerPort: 8080
         livenessProbe:
           httpGet:
