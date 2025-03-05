@@ -33,6 +33,11 @@ spec:
             configMapKeyRef:
               name: todo-config
               key: PYTHONUNBUFFERED
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: app-secrets
+              key: SECRET_KEY
 
 
         ports:
