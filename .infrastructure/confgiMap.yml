@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: config-map
+ namespace: mateapp
+data:
+ PYTHONUNBUFFERED: "3.2"
