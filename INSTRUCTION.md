@@ -15,12 +15,12 @@ kubectl apply -f deployment.yml
 ## Access the application
 Run this commands
 ```bash
-kubectl get configMap app-config -n mateapp
+kubectl get configMap app-config -n todoapp
 ```
 DATA column should be equal 1
 Same for secrets
 ```bash
-kubectl get secrets app-secret -n mateapp
+kubectl get secrets app-secret -n todoapp
 ```
 Run this command to see your `SECRET_KEY`:
 ```bash
