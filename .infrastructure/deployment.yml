@@ -28,8 +28,17 @@ spec:
             memory: "256Mi"
             cpu: "150m"
         env:
-        - name: PYTHONUNBUFFERED
-          value: "1"
+          - name: PYTHONUNBUFFERED
+            valueFrom:
+              configMapKeyRef:
+                name: configmap
+                key: key
+          - name: SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: secretkey
+                key: SECRET_KEY
+
         ports:
         - containerPort: 8080
         livenessProbe:
