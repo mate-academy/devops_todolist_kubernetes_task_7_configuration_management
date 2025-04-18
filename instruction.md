@@ -5,64 +5,62 @@
 Follow these steps to apply the changes made in the project:
 
 1. **Install Dependencies**  
-   Ensure you have all necessary dependencies installed. Run the following command to install them:
+   Ensure all necessary dependencies are installed. Run the following command:
    ```bash
    pip install -r requirements.txt
    ```
 
 2. **Apply Migrations**  
-   Run the following commands to apply database migrations:
+   Generate and apply any new database migrations:
    ```bash
    python manage.py makemigrations
    python manage.py migrate
    ```
 
 3. **Collect Static Files**  
-   If static files are part of the changes, collect the static files by running:
+   If any changes involve static files, collect them by running:
    ```bash
    python manage.py collectstatic
    ```
 
 4. **Run Tests**  
-   Execute the tests to verify that everything is working as expected:
+   Execute the project's test suite to verify that all tests pass:
    ```bash
    python manage.py test
    ```
 
-5. **Start the Development Server**  
-   Run the development server to validate the changes locally:
+5. **Start the Server**  
+   Launch the local development server to validate the changes in the browser:
    ```bash
    python manage.py runserver
-   ```
-
-6. **Check the Application in the Browser**  
-   Open your browser and visit the application at:
-   ```text
-   http://127.0.0.1:8000/
    ```
 
 ---
 
 ## Validating the Changes
 
-After following the steps above, validate the changes by:
+After applying the above steps, ensure the changes are correctly implemented by following these validation steps:
 
-1. **Running Automated Tests**  
-   Ensure all existing and newly added tests are passing:
+1. **Write and Run Tests**
+   - Confirm that all test cases, including existing and any newly added ones, pass.
+   - If necessary, write tests for new features or bug fixes.
    ```bash
    python manage.py test
    ```
 
 2. **Manual Testing**
-    - Navigate through the affected parts of the application in the browser.
-    - Verify that new features work as specified.
-    - Check no regressions have occurred in unchanged features.
+   - Open the application in a browser at `http://127.0.0.1:8000/`.
+   - Navigate through the updated or added features and confirm they work as expected.
+   - Verify that unchanged parts of the application still behave correctly.
 
-3. **Code Review**  
-   Conduct a quick review of code changes to confirm adherence to coding standards and resolve any potential issues.
+3. **Lint and Code Quality Check**  
+   Run a linter or code quality tool (if configured) to ensure code follows the project's style guidelines:
+   ```bash
+   flake8 .
+   ```
 
-4. **Error Logs**  
-   Monitor the logs during testing and running the application to ensure no new warnings or errors appear.
+4. **Check Logs for Errors**  
+   During testing and while running the server, monitor the logs to ensure there are no new errors or warnings.
 
-If all validation steps are successful, you can confidently deploy the changes to production. Follow your project's
-deployment instructions for the next steps.
+Once all the steps above are completed successfully, consider proceeding with deployment as per your project's
+deployment workflow.
