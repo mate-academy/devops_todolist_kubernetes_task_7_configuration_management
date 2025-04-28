@@ -2,14 +2,14 @@
 
 ### Attached files
  
-- confgiMap.yml
+- configMap.yml
 - secret.yml
 - INSTRUCTION.md
 
 ### Apply ConfigMap
 
 ```bash
-kubectl apply -f confgiMap.yml
+kubectl apply -f configMap.yml
 ```
 
 ### Apply Secret
