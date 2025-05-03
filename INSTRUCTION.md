@@ -8,7 +8,7 @@
 - apply config:  
 `kubectl apply -f .infrastructure/configMap.yml`
 
-- apply deplloyment:  
+- apply deployment:  
 `kubectl apply -f .infrastructure/deployment.yml`  
 
 ## 2. Validation:
@@ -18,4 +18,4 @@
 `printenv`  
 
 - validate secret by command:  
-`kubectl get secret app-secrets -o jsonpath=’{.data.*}’`
+`kubectl get secret app-secrets -o jsonpath='{.data.*}'`
