@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: todoapp-daemonset
-  namespace: todoapp
+  namespace: mateapp
 spec:
   selector:
     matchLabels:
@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
       - name: todoapp
-        image: radial/busyboxplus:curl
-        command: ["/bin/sh", "-c", "while sleep 5; do curl todoapp-service.todoapp.svc.cluster.local; done"]
+        image: ikulyk404/busyboxplus:curl
+        command: ["/bin/sh", "-c", "while sleep 5; do curl todoapp-ip-service.todoapp.svc.cluster.local; done"]
         resources:
           requests:
             cpu: "30m"

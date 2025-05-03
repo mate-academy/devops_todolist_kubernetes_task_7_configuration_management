@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: todo-cronjob
-  namespace: todoapp
+  namespace: mateapp
 spec:
   schedule: "*/4 * * * *"
   concurrencyPolicy: Allow
@@ -14,7 +14,7 @@ spec:
         spec:
           containers:
           - name: hello
-            image: radial/busyboxplus:curl
+            image: ikulyk404/busyboxplus:curl
             command:
             - /bin/sh
             - -c
