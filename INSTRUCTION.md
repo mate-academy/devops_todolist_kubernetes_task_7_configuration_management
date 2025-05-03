@@ -1,4 +1,7 @@
 ## 1. Apply changes
+- make sure namespace exists:  
+`kubectl apply -f .infrastructure/namespace.yml`
+
 - apply secrets:  
 `kubectl apply -f .infrastructure/secret.yml`  
 
