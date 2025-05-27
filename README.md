@@ -32,7 +32,7 @@ You can now browse the [API](http://localhost:8000/api/) or start on the [landin
 Create a Kubernetes manifest for a pod that will contain a ToDo app container:
 
 1. Fork this repository.
-1. Create a `confgiMap.yml` file for ConfigMap resource.
+1. Create a `configMap.yml` file for ConfigMap resource.
 1. ConfigMap requirements:
     3.1. ConfigMap should have a `PYTHONUNBUFFERED` value set
     3.2. Deployment should use this ConfigMap and set the `PYTHONUNBUFFERED` environment variable
