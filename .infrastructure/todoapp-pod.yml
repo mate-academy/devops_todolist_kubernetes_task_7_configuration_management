@@ -39,18 +39,21 @@ spec:
     image: olhadevandops/todoapp:3.0.1
     env:
     - name: PYTHONUNBUFFERED
-      value: "1"
+      valueFrom:
+        configMapKeyRef:
+          name: todo-config
+          key: PYTHONUNBUFFERED
     ports:
-    - containerPort: 8000
+    - containerPort: 8080
     livenessProbe:
       httpGet:
-        path: api/liveness
-        port: 8000
+        path: api/health
+        port: 8080
       initialDelaySeconds: 60
       periodSeconds: 5
     readinessProbe:
       httpGet:
-        path: api/readiness
-        port: 8000
+        path: api/ready
+        port: 8080
       initialDelaySeconds: 5
       periodSeconds: 5
