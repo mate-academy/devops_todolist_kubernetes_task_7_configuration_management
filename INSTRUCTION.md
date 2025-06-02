@@ -9,7 +9,7 @@ kubectl apply -f deployment.yml
 ### How to validate the changes
 
 kubectl get secret
-kubectl describe secret app-secret
+kubectl describe secret todo-app-secret
 
 kubectl rollout status deployment todoapp
 kubectl exec -it <pod-name> -- /bin/sh
