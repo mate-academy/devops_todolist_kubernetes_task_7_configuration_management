@@ -15,14 +15,14 @@ kubectl apply -f deployment.yml
 
 ```bash
 kubectl get configmap
-kubectl describe configmap mate-config
+kubectl describe configmap app-config
 ```
 
 2. Verify, if Secret was created (the same as ConfigMap):
 
 ```bash
 kubectl get secret
-kubectl describe secret mate-secret
+kubectl describe secret app-secret
 ```
 
 3. Verify, if pods took the environment variables:
