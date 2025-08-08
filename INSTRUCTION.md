@@ -2,19 +2,25 @@
 
 ## Create resources
 
-### 1. Create ConfigMap
+### 1. Create namespace (if doesn't exist)
+
+```shell
+kubectl apply -f .infrastructure/namespaces.yml
+```
+
+### 2. Create ConfigMap
 
 ```shell
 kubectl apply -f .infrastructure/configMap.yml
 ```
 
-### 2. Create Secret
+### 3. Create Secret
 
 ```shell
 kubectl apply -f .infrastructure/secret.yml
 ```
 
-### 3. Apply Deployment
+### 4. Apply Deployment
 
 ```shell
 kubectl apply -f .infrastructure/deployment.yml
