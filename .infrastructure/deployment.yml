@@ -29,12 +29,12 @@ spec:
             cpu: "150m"
         env:
         - name: PYTHONUNBUFFERED
-          valuefrom:
+          valueFrom:
             configMapKeyRef:
               name: todoapp-config
               key: PYTHONUNBUFFERED
         - name: SECRET_KEY
-          valuefrom:
+          valueFrom:
             secretKeyRef:
               name: todoapp-secret
               key: SECRET_KEY

@@ -1,4 +1,5 @@
 kubectl apply -f .infrastructure/configMap.yml
 kubectl apply -f .infrastructure/secret.yml
+kubectl apply -f .infrastructure/deployment.yml
 
-kubectl get pods -w
+kubectl get secret todoapp-secrets -o jsonpath=’{.data.*}’
