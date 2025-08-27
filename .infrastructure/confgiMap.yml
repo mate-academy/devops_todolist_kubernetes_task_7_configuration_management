@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: todo-config
 data:
-  PYTHONUNBUFFERED : "3.2"
+  PYTHONUNBUFFERED : "1"
