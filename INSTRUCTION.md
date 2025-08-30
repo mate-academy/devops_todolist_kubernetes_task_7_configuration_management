@@ -28,7 +28,7 @@ minikube image load todolist:latest
 ### 1. Создание ConfigMap
 
 ```bash
-kubectl apply -f configMap.yml
+kubectl apply -f confgiMap.yml
 ```
 
 **Что происходит:** Создается ConfigMap с переменной окружения `PYTHONUNBUFFERED=1`, которая отключает буферизацию вывода Python.
@@ -110,6 +110,54 @@ kubectl port-forward service/todolist-service 8080:80
 
 Откройте браузер и перейдите по адресу `http://localhost:8080` для проверки работы приложения.
 
+### 5. Валидация использования SECRET_KEY из переменной окружения
+
+**Критически важно:** Проверим, что приложение действительно использует SECRET_KEY из Secret, а не захардкоженное значение:
+
+```bash
+# Получаем имя пода
+POD_NAME=$(kubectl get pods -l app=todolist -o jsonpath="{.items[0].metadata.name}")
+
+# Проверяем текущее значение SECRET_KEY в поде
+kubectl exec $POD_NAME -- printenv SECRET_KEY
+
+# Изменяем Secret на новое значение (для теста)
+# Сначала кодируем новый ключ в base64
+NEW_SECRET_B64=$(echo -n "new-test-secret-key-12345" | base64)
+
+# Обновляем Secret
+kubectl patch secret todolist-secret -p='{"data":{"SECRET_KEY":"'$NEW_SECRET_B64'"}}'
+
+# Перезапускаем Deployment для применения нового Secret
+kubectl rollout restart deployment todolist-deployment
+
+# Ждем завершения перезапуска
+kubectl rollout status deployment todolist-deployment
+
+# Получаем новое имя пода после перезапуска
+POD_NAME=$(kubectl get pods -l app=todolist -o jsonpath="{.items[0].metadata.name}")
+
+# Проверяем, что новое значение SECRET_KEY применилось
+kubectl exec $POD_NAME -- printenv SECRET_KEY
+
+# Проверяем логи приложения (должно работать с новым ключом)
+kubectl logs $POD_NAME
+```
+
+**Ожидаемый результат:** 
+- Приложение должно успешно перезапуститься с новым SECRET_KEY
+- Команда `printenv SECRET_KEY` должна показать новое значение `new-test-secret-key-12345`
+- Приложение должно работать корректно, что подтверждает отсутствие fallback на захардкоженное значение
+
+**Возврат к исходному Secret:**
+```bash
+# Возвращаем исходное значение SECRET_KEY
+kubectl patch secret todolist-secret -p='{"data":{"SECRET_KEY":"QGUyKHl4KXYmdGdoM19zPTB5amEtaSFkcGVieHN6XmRnNDd4KS1rJmtxXzN6Zio5ZSo="}}'
+
+# Перезапускаем Deployment
+kubectl rollout restart deployment todolist-deployment
+```
+
 ## Ожидаемые результаты
 
 1. **ConfigMap создан** - содержит `PYTHONUNBUFFERED=1`
@@ -161,5 +209,5 @@ minikube image ls | grep todolist
 kubectl delete -f service.yml
 kubectl delete -f deployment.yml
 kubectl delete -f secret.yml
-kubectl delete -f configMap.yml
+kubectl delete -f confgiMap.yml
 ```
