@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todolist-deployment
+  labels:
+    app: todolist
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todolist
+  template:
+    metadata:
+      labels:
+        app: todolist
+    spec:
+      containers:
+        - name: todolist
+          image: todolist:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PYTHONUNBUFFERED
+              valueFrom:
+                configMapKeyRef:
+                  name: todolist-config
+                  key: PYTHONUNBUFFERED
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: todolist-secret
+                  key: SECRET_KEY
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
