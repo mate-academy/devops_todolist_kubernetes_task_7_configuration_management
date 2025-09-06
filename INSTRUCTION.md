@@ -1,14 +1,14 @@
 1. Apply the changes
 
-First, make sure you are inside the cloned repository folder.
+Make sure you are inside the cloned repository folder.
 
 # Apply ConfigMap
-kubectl apply -f configMap.yml
+kubectl apply -f confgiMap.yml
 
 # Apply Secret
-kubectl apply -f todo-secret.yml
+kubectl apply -f secret.yml
 
-# Apply Deployment (the file that defines the ToDo app pod/container)
+# Apply Deployment
 kubectl apply -f deployment.yml
 
 2. Validate the changes
@@ -31,7 +31,7 @@ Note: the value is stored in base64. To decode:
 kubectl get secret todo-secret -o jsonpath='{.data.SECRET_KEY}' | base64 --decode
 
 Check that the Deployment is using ConfigMap and Secret
-kubectl describe deployment todo-deployment
+kubectl describe deployment todoapp
 
 
 In the Environment section of the container, you should see:
@@ -42,7 +42,7 @@ SECRET_KEY from Secret
 
 Check running Pod
 kubectl get pods
-kubectl logs
+kubectl logs <todoapp-pod-name>
 
 
 Logs should show the application is running correctly without errors.
@@ -51,6 +51,6 @@ Logs should show the application is running correctly without errors.
 
 If you want to remove the resources:
 
-kubectl delete -f configMap.yml
+kubectl delete -f confgiMap.yml
 kubectl delete -f secret.yml
 kubectl delete -f deployment.yml
