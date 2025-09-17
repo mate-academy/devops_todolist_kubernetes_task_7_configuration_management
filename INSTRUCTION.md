@@ -2,14 +2,14 @@
 
 ## Apply manifests
 ```
-kubectl apply -f configMap.yml
-kubectl apply -f secret.yml
-kubectl apply -f deployment.yml
+kubectl apply -f ConfigMap.yml -n todoapp
+kubectl apply -f secret.yml -n todoapp
+kubectl apply -f deployment.yml -n todoapp
 ```
 # Validate resources
 # Check ConfigMap
 ```
-kubectl get configmap todo-config -o yaml
+kubectl get ConfigMap todo-config -o yaml
 ```
 # Check Secret (encoded value)
 ```
@@ -25,6 +25,6 @@ kubectl describe pod <pod-name> | grep -A2 "Environment"
 ```
 Test app
 ```
-kubectl port-forward deployment/todo-deployment 8000:8000
+kubectl port-forward deployment/todoapp 8080:8080 -n todoapp
 ```
 curl http://localhost:8000
