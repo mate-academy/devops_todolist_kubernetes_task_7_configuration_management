@@ -2,9 +2,9 @@
 
 ## Apply manifests
 ```
-kubectl apply -f ConfigMap.yml -n todoapp
-kubectl apply -f secret.yml -n todoapp
-kubectl apply -f deployment.yml -n todoapp
+kubectl apply -f .infrastructure/confgiMap.yml
+kubectl apply -f .infrastructure/secret.yml
+kubectl apply -f .infrastructure/deployment.yml
 ```
 # Validate resources
 # Check ConfigMap
