@@ -12,7 +12,6 @@ FROM python:${PYTHON_VERSION} as run
 WORKDIR /app
 
 ENV PYTHONUNBUFFERED=1
-ENV SECRET_KEY=${SECRET_KEY}
 
 COPY --from=builder /app .
 
