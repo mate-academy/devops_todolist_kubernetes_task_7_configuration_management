@@ -16,7 +16,7 @@
 
 ### Pod validation:
     kubectl get pods -n todoapp
-    POD=$(kubectl get pods -n todoapp -l app=todoapp -o jsonpath='{.items[0].metadata.name}'
+    POD=$(kubectl get pods -n todoapp -l app=todoapp -o jsonpath='{.items[0].metadata.name}')
     kubectl describe pod $POD -n todoapp
     kubectl exec -n todoapp $POD -- printenv | grep SECRET_KEY
     kubectl exec -n todoapp $POD -- printenv | grep PYTHONUNBUFFERED
