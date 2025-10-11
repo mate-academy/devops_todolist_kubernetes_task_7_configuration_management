@@ -37,7 +37,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: app-secret
-              key: secretKey
+              key: SECRET_KEY
         ports:
         - containerPort: 8080
         livenessProbe:
