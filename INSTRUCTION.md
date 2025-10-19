@@ -1,10 +1,10 @@
 1) Apply the manifests
 
 # Apply namespace, ConfigMap, Secret and Deployment
-kubectl apply -f namespace.yml
-kubectl apply -f configMap.yml
-kubectl apply -f secret.yml
-kubectl apply -f deployment.yml
+kubectl apply -f .infrastructure/namespace.yml
+kubectl apply -f .infrastructure/confgiMap.yml
+kubectl apply -f .infrastructure/secret.yml
+kubectl apply -f .infrastructure/deployment.yml
 
 2) Validate resources were created
 
