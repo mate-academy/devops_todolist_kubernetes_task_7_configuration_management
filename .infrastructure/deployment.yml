@@ -33,7 +33,7 @@ spec:
             ConfigMapKeyRef:
               name: todoapp-config
               key: PYTHONUNBUFFERED
-        - name: SECRET_KEY
+        - name: SECRETKEY
           valueFrom:
             SecretKeyRef:
               name: todoapp-secret

@@ -1,6 +1,7 @@
 1) Apply the manifests
 
-# Apply ConfigMap, Secret and Deployment
+# Apply namespace, ConfigMap, Secret and Deployment
+kubectl apply -f namespace.yml
 kubectl apply -f configMap.yml
 kubectl apply -f secret.yml
 kubectl apply -f deployment.yml
@@ -25,8 +26,8 @@ kubectl get pods # todoapp pods should be running
 kubectl describe deployment <deployment-name>
 
 3) Verify environment variables in Pod
-kubectl exec -it $POD -- printenv PYTHONUNBUFFERED
-kubectl exec -it $POD -- printenv SECRET_KEY
+kubectl exec -it <todoapp-pod-name> -- printenv PYTHONUNBUFFERED
+kubectl exec -it <todoapp-pod-name> -- printenv SECRET_KEY
 
 4) Test web app
 
