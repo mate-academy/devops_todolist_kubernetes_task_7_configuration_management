@@ -37,7 +37,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: todoapp-secrets
-              key: secret_key
+              key: SECRET_KEY
         ports:
         - containerPort: 8080
         livenessProbe:
