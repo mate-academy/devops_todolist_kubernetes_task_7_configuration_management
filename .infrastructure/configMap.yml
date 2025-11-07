@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+  name: config-app
+  namespace: mateapp
+data:
+  PYTHONUNBUFFERED: "http://httpbin-api.mateapp.svc.cluster.local"
