@@ -33,6 +33,11 @@ spec:
             ConfigMapKeyRef:
               name: app-config
               key: PYTHONUNBUFFERED
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: Secret-app
+              key: SECRET_KEY
         ports:
         - containerPort: 8080
         livenessProbe:
