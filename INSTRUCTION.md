@@ -1,15 +1,44 @@
-щоб перевірити confgiMap потрібно застосувати змінни 
- kubectl appy -f confgiMap.yml
- kubectl appy -f deployment.yml
-anagement % kubectl get configmap    
-і побачимо табличку  
-NAME               DATA   AGE
-*                   *      *
+Перевірка ConfigMap
 
-потім перевіряємо поди 
-kubectl get pogs
--------
-щоб перевірити secret  отрібно застосувати змінни 
+Щоб перевірити ConfigMap, потрібно застосувати зміни:
+
+kubectl apply -f configMap.yml
+kubectl apply -f deployment.yml
+
+
+Перевіряємо, що ConfigMap створено:
+
+kubectl get configmap
+
+
+Приклад виводу:
+
+NAME               DATA   AGE
+configmap-name     1      10s
+
+
+Далі перевіряємо поди:
+
+kubectl get pods
+
+
+Щоб переконатися, що змінна PYTHONUNBUFFERED застосувалась у поді:
+
+kubectl exec <pod-name> -- printenv | grep PYTHONUNBUFFERED
+
+Перевірка Secret
+
+Щоб перевірити Secret, застосовуємо зміни:
+
 kubectl apply -f secret.yml
 kubectl apply -f deployment.yml
 
+
+Перевіряємо створений Secret:
+
+kubectl get secret
+
+
+І перевіряємо, що змінна SECRET_KEY доступна в контейнері:
+
+kubectl exec <pod-name> -- printenv | grep SECRET_KEY
