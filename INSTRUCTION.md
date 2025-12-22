@@ -6,13 +6,13 @@ To apply the configuration changes, we first need to create the ConfigMap and Se
 
 1.  **Apply ConfigMap and Secret:**
     ```bash
-    kubectl apply -f configMap.yml
-    kubectl apply -f secret.yml
+    kubectl apply -f ./infrastructure/configMap.yml
+    kubectl apply -f ./infrastructure/secret.yml
     ```
 
 2.  **Apply the updated Deployment:**
     ```bash
-    kubectl apply -f deployment.yml
+    kubectl apply -f ./infrastructure/deployment.yml
     ```
     *This triggers a rolling update. Kubernetes will terminate old pods and create new ones that have the new configuration attached.*
 
