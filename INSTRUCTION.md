@@ -1,6 +1,18 @@
-# =========================
-# VALIDATION OF CONFIGMAP AND SECRET
-# =========================
+
+# Apply the ConfigMap
+kubectl apply -f configMap.yml -n mateapp
+
+# Apply the Secret
+kubectl apply -f secret.yml -n mateapp
+
+# Apply the Deployment
+kubectl apply -f deployment.yml -n mateapp
+
+# Verify resources are created
+kubectl get configmap -n mateapp
+kubectl get secret -n mateapp
+kubectl get deployment -n mateapp
+kubectl get pods -n mateapp
 
 # --- ConfigMap Validation ---
 
