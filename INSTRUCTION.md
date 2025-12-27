@@ -14,7 +14,7 @@ kubectl describe configmap app-config -n mateapp
 kubectl get configmap app-config -n mateapp -o jsonpath='{.data.PYTHONUNBUFFERED}'
 
 # Check that Deployment uses the ConfigMap for environment variable
-kubectl describe deployment <deployment-name> -n mateapp | grep -A 2 PYTHONUNBUFFERED
+kubectl describe deployment <deployment-name> -n todoapp | grep -A 2 PYTHONUNBUFFERED
 
 # Verify inside a running Pod that the environment variable is set
 kubectl exec -n mateapp -it <pod-name> -- env | grep PYTHONUNBUFFERED
@@ -34,7 +34,7 @@ kubectl describe secret app-secrets -n mateapp
 kubectl get secret app-secrets -n mateapp -o jsonpath='{.data.SECRET_KEY}'
 
 # Check that Deployment uses the Secret for environment variable
-kubectl describe deployment <deployment-name> -n mateapp | grep -A 2 SECRET_KEY
+kubectl describe deployment <deployment-name> -n todoapp | grep -A 2 SECRET_KEY
 
 # Verify inside a running Pod that the SECRET_KEY environment variable is set
 kubectl exec -n mateapp -it <pod-name> -- env | grep SECRET_KEY
