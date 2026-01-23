@@ -28,6 +28,11 @@ spec:
             memory: "256Mi"
             cpu: "150m"
         env:
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: todoapp-secret
+              key: SECRET_KEY
         - name: PYTHONUNBUFFERED
           valueFrom:
             configMapKeyRef:
