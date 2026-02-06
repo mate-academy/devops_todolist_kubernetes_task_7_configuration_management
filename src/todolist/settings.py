@@ -125,3 +125,5 @@ TEMPLATES = [
         },
     },
 ]
+
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-default-key-for-dev')
