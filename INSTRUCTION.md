@@ -5,7 +5,7 @@ To apply the ConfigMap and Secret, and update the Deployment to use them:
 
 ```
 # 1. Apply ConfigMap
-kubectl apply -f .infrastructure/configmap.yml
+kubectl apply -f .infrastructure/configiMap.yml
 
 # 2. Apply Secret
 kubectl apply -f .infrastructure/secret.yml
