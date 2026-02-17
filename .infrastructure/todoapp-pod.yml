@@ -9,6 +9,17 @@ spec:
   containers:
   - name: todoapp
     image: ikulyk404/todoapp:3.0.0
+    env:
+      - name: PYTHONUNBUFFERED
+        valueFrom:
+          configMapKeyRef:
+            name: app-config
+            key: PYTHONUNBUFFERED
+      - name: SECRET_KEY
+        valueFrom:
+          secretKeyRef:
+            name: app-secrets
+            key: SECRET_KEY
     ports:
     - containerPort: 8080
     livenessProbe:
@@ -38,8 +49,16 @@ spec:
   - name: todoapp
     image: ikulyk404/todoapp:3.0.0
     env:
-    - name: PYTHONUNBUFFERED
-      value: "1"
+      - name: PYTHONUNBUFFERED
+        valueFrom:
+          configMapKeyRef:
+            name: app-config
+            key: PYTHONUNBUFFERED
+      - name: SECRET_KEY
+        valueFrom:
+          secretKeyRef:
+            name: app-secrets
+            key: SECRET_KEY
     ports:
     - containerPort: 8080
     livenessProbe:

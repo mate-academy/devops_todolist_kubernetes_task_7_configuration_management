@@ -31,9 +31,14 @@ spec:
         env:
         - name: PYTHONUNBUFFERED
           valueFrom:
+            configMapKeyRef:
+              name: app-secrets
+              key: PYTHONUNBUFFERED
+        - name: SECRET_KEY
+          valueFrom:
             secretKeyRef:
               name: app-secrets
-              key: pythonunbuffered
+              key: SECRET_KEY
         ports:
         - containerPort: 8080
         livenessProbe:
