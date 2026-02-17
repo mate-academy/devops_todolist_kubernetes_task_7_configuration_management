@@ -28,8 +28,13 @@ kubectl get all -n mateapp
 
 All pods should be in Running status.
 
-Connect to one of the pods from deployment and make the next command:
+Connect to one of the pods from deployment and make the next command.
+Note the name of the pod, which we need, starting with todoapp-
 ```bash
 kubectl exec -it <POD_NAME> -- sh -c "printenv | grep SECRET_KEY"
 ```
-
+## 3. Verify Application Logs
+```bash
+kubectl logs <POD_NAME> -n mateapp
+```
+The logs should show the development server starting successfully on port 8080

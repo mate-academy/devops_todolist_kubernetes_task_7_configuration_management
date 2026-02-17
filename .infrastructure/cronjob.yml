@@ -18,5 +18,5 @@ spec:
             command:
             - /bin/sh
             - -c
-            - curl todoapp-nodeport.todoapp.svc.cluster.local/api/ready
+            - curl todoapp-nodeport.mateapp.svc.cluster.local/api/ready
           restartPolicy: OnFailure
