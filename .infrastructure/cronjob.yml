@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: todo-cronjob
-  namespace: todoapp
+  namespace: mateapp
 spec:
   schedule: "*/4 * * * *"
   concurrencyPolicy: Allow
@@ -18,5 +18,5 @@ spec:
             command:
             - /bin/sh
             - -c
-            - curl todoapp-nodeport.todoapp.svc.cluster.local/api/ready
+            - curl todoapp-nodeport.mateapp.svc.cluster.local/api/ready
           restartPolicy: OnFailure

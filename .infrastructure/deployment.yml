@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: todoapp
-  namespace: todoapp
+  namespace: mateapp
 spec:
+  replicas: 2
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -29,18 +30,26 @@ spec:
             cpu: "150m"
         env:
         - name: PYTHONUNBUFFERED
-          value: "1"
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: PYTHONUNBUFFERED
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: app-secrets
+              key: SECRET_KEY
         ports:
         - containerPort: 8080
         livenessProbe:
           httpGet:
-            path: api/health
+            path: /api/health
             port: 8080
           initialDelaySeconds: 60
           periodSeconds: 5
         readinessProbe:
           httpGet:
-            path: api/ready
+            path: /api/ready
             port: 8080
           initialDelaySeconds: 5
           periodSeconds: 5
