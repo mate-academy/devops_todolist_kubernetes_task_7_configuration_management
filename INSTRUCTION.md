@@ -9,11 +9,11 @@
 kubectl create namespace todoapp
 
 # Застосування конфігурацій та секретів
-kubectl apply -f configMap.yml
-kubectl apply -f secret.yml
+kubectl apply -f .infrastructure/configMap.yml
+kubectl apply -f .infrastructure/secret.yml
 
 # Розгортання додатка
-kubectl apply -f deployment.yml
+kubectl apply -f .infrastructure/deployment.yml
 ```
 
 ## 2. Валідація змін
