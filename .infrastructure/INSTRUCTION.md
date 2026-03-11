@@ -1,10 +1,8 @@
 To apply configMap.yml and secret.yml use commands:
 
-    cd ./.infrastructure
+    kubectl apply -f .infrastructure/configMap.yml
 
-    kubectl apply -f ./configMap.yml
-
-    kubectl apply -f ./secret.yml
+    kubectl apply -f .infrastructure/secret.yml
 
 To validare changes you have to go into a pod. Use commands:
 
