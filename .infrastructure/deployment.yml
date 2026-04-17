@@ -4,11 +4,9 @@ metadata:
   name: todoapp
   namespace: todoapp
 spec:
+  replicas: 1
   strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
+    type: Recreate
   selector:
     matchLabels:
       app: todoapp
@@ -22,25 +20,36 @@ spec:
         image: ikulyk404/todoapp:3.0.0
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "150m"
+            memory: "128Mi"
+            cpu: "50m"
           limits:
             memory: "256Mi"
             cpu: "150m"
         env:
+        # Беремо значення з ConfigMap
         - name: PYTHONUNBUFFERED
-          value: "1"
+          valueFrom:
+            configMapKeyRef:
+              name: todoapp-config
+              key: PYTHONUNBUFFERED
+        # Беремо секретний ключ із Secret
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: todoapp-secret
+              key: SECRET_KEY
+
         ports:
         - containerPort: 8080
         livenessProbe:
           httpGet:
-            path: api/health
+            path: /api/health
             port: 8080
           initialDelaySeconds: 60
-          periodSeconds: 5
+          periodSeconds: 30
         readinessProbe:
           httpGet:
-            path: api/ready
+            path: /api/ready
             port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 5
+          initialDelaySeconds: 10
+          periodSeconds: 30
