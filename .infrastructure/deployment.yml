@@ -30,6 +30,8 @@ spec:
         envFrom:
           - configMapRef:
               name: example-config
+          - secretRef:
+              name: app-secrets
         ports:
         - containerPort: 8080
         livenessProbe:

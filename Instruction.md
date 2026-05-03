@@ -15,3 +15,4 @@ Check Pod logs:
 kubectl logs <pod-name> -n mateapp
 Check environment variables inside Pod:
 kubectl exec <pod-name> -n mateapp -- env | grep -E "PYTHONUNBUFFERED|SECRET_KEY"
+kubectl get secret app-secrets -n todoapp
