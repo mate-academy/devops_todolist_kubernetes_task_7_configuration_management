@@ -27,9 +27,11 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "150m"
-        env:
-        - name: PYTHONUNBUFFERED
-          value: "1"
+        envFrom:
+          - configMapRef:
+              name: example-config
+          - secretRef:
+              name: app-secrets
         ports:
         - containerPort: 8080
         livenessProbe:
