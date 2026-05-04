@@ -31,12 +31,12 @@ spec:
         - name: PYTHONUNBUFFERED
           valueFrom:
             configMapKeyRef:
-              name: mateapp-config
+              name: todoapp-config
               key: PYTHONUNBUFFERED
         - name: SECRET_KEY
           valueFrom:
             secretKeyRef:
-              name: mateapp-secret
+              name: todoapp-secret
               key: SECRET_KEY
         ports:
         - containerPort: 8080
