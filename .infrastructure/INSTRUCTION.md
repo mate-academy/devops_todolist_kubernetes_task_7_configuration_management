@@ -10,14 +10,10 @@
 3. To apply Secrets:
     ```bash
     kubectl apply -f .infrastructure/secret.yml
-   
-4. To apply NodePort:
-    ````bash
-    kubectl apply -f .infrastructure/nodeport.yml
-   
+    
 4. To apply deployment:
    ```bash
-    kubectl apply -f .infrastructure/deployment.ym
+    kubectl apply -f .infrastructure/deployment.yml
    
 ---
 To check your app go to http://localhost:30007/
