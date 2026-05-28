@@ -3,7 +3,7 @@
 Apply ConfigMap:
 
 ```bash id="v8k1re"
-kubectl apply -f .infrastructure/configMap.yml
+kubectl apply -f .infrastructure/confgiMap.yml
 ```
 
 Apply Secret:
