@@ -5,13 +5,13 @@ This goide contains information on how to deploy configuration resources('Config
 To create resources and update the deployment, run the following commands in the terminal:
 ```bash
 # Create a ConfigMap with Python environment variables:
-kubectl apply -f configMap.yml
+kubectl apply -f .inftastructure/configMap.yml
 
 # Create a Secret with the application's secret key:
-kubectl apply -f secret.yml
+kubectl apply -f .inftastructure/secret.yml
 
 # Update a Deployment using three resources
-kubectl apply -f deployment.yml
+kubectl apply -f .inftastructure/deployment.yml
 ```
 
 ## 2. Validation and verification of changes
