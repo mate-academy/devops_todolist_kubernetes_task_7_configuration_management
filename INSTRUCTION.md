@@ -10,13 +10,13 @@ Apply the Kubernetes manifests in the following order (Secret and ConfigMap firs
 
 ```
 1. Create the ConfigMap resource
-kubectl apply -f configMap.yml
+kubectl apply -f .infrastructure/configMap.yml
 
 2. Create the Secret resource
-kubectl apply -f secret.yml
+kubectl apply -f .infrastructure/secret.yml
 
 3. Apply/Update the Deployment
-kubectl apply -f deployment.yml
+kubectl apply -f .infrastructure/deployment.yml
 ```
 ## 2. Validation
 To ensure everything is deployed correctly and the Django application successfully consumes the environment variables, perform the following validation steps:
