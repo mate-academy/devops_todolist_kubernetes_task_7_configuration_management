@@ -32,12 +32,12 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: app-config
-                key: PYTHONUNBUFFERED
+              key: PYTHONUNBUFFERED
         - name: SECRET_KEY
           valueFrom:
             secretKeyRef:
               name: app-secret
-                key: SECRET_KEY
+              key: SECRET_KEY
         ports:
         - containerPort: 8080
         livenessProbe:
