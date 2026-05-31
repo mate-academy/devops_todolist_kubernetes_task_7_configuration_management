@@ -1,6 +1,6 @@
 # 1) How to apply the changes:
 
-    kubectl apply -f configMap.yml
+    kubectl apply -f confgiMap.yml
     kubectl apply -f secret.yml
     kubectl apply -f deployment.yml
 
