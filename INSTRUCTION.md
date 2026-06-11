@@ -28,7 +28,7 @@ kubectl apply -f nodeport.yml
 
 ## TESTING
 check key
-kubectl get secret app-secrets -o jsonpath=’{.data.*}’
+kubectl get secret app-secrets -n mateapp -o jsonpath=’{.data.*}’
 check env
-kubectl exec -it <name pod> -- sh  
+kubectl exec -it <name pod> -n mateapp -- sh  
 printenv
