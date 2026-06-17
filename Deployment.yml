@@ -23,14 +23,3 @@ spec:
             name: django-config
         - secretRef:
             name: django-secret
-        env:
-        - name: PYTHONUNBUFFERED
-          valueFrom:
-            configMapKeyRef:
-              name: django-config
-              key: PYTHONUNBUFFERED
-        - name: SECRET_KEY
-          valueFrom:
-            secretKeyRef:
-              name: django-secret
-              key: SECRET_KEY
