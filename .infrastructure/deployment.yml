@@ -2,45 +2,29 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: todoapp
-  namespace: todoapp
+  namespace: mateapp
 spec:
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
-  selector:
-    matchLabels:
-      app: todoapp
+  # ... replicas/strategy/selector/template.metadata.labels як було ...
   template:
     metadata:
       labels:
         app: todoapp
     spec:
       containers:
-      - name: todoapp
-        image: ikulyk404/todoapp:3.0.0
-        resources:
-          requests:
-            memory: "256Mi"
-            cpu: "150m"
-          limits:
-            memory: "256Mi"
-            cpu: "150m"
-        env:
-        - name: PYTHONUNBUFFERED
-          value: "1"
-        ports:
-        - containerPort: 8080
-        livenessProbe:
-          httpGet:
-            path: api/health
-            port: 8080
-          initialDelaySeconds: 60
-          periodSeconds: 5
-        readinessProbe:
-          httpGet:
-            path: api/ready
-            port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 5
+        - name: todoapp
+          image: vitalysemeniv/todoapp:3.0.0
+          ports:
+            - containerPort: 8000    # або 8080, якщо у вас так
+          # підключаємо змінні з ConfigMap і Secret
+          env:
+            - name: PYTHONUNBUFFERED
+              valueFrom:
+                configMapKeyRef:
+                  name: todo-config
+                  key: PYTHONUNBUFFERED
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: todo-secret
+                  key: SECRET_KEY
+          # probes/resources залишайте ваші
