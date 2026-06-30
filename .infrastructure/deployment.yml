@@ -33,6 +33,11 @@ spec:
             configMapKeyRef:
               name: app-config
               key: EXTERNAL_ENDPOINT
+        - name: PYTHONUNBUFFERED
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: PYTHONUNBUFFERED      
         - name: SECRET_KEY
           valueFrom:
             secretKeyRef:

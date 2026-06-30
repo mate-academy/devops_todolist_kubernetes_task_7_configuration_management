@@ -1,3 +1,5 @@
+kubectl apply -f namespace.yml
+
 kubectl config set-context --current --namespace=mateapp
 
 kubectl apply -f configMap.yml
