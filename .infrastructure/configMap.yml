@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: app-config
+ namespace: mateapp
+data:
+ EXTERNAL_ENDPOINT: "http://httpbin-api.mateapp.svc.cluster.local"
+ ENVIRONMENT: "Development"
+ env:
+  - name: PYTHONUNBUFFERED
+    value: "1"
+ PORT: "8080"
