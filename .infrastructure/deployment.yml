@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: todoapp
-  namespace: todoapp
+  namespace: mateapp
 spec:
   strategy:
     type: RollingUpdate
@@ -33,7 +33,7 @@ spec:
             configMapKeyRef:
               name: app-config
               key: EXTERNAL_ENDPOINT
-        - name: EXTERNAL_ENDPOINT
+        - name: SECRET_KEY
           valueFrom:
             secretKeyRef:
               name: app-secret
