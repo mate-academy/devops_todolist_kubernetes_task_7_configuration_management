@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: todoapp
-  namespace: todoapp
+  namespace: mateapp
 spec:
   strategy:
     type: RollingUpdate
@@ -28,8 +28,21 @@ spec:
             memory: "256Mi"
             cpu: "150m"
         env:
+        - name: EXTERNAL_ENDPOINT
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: EXTERNAL_ENDPOINT
         - name: PYTHONUNBUFFERED
-          value: "1"
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: PYTHONUNBUFFERED      
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: app-secret
+              key: SECRET_KEY
         ports:
         - containerPort: 8080
         livenessProbe:
