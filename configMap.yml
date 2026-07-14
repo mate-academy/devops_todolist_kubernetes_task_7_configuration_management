@@ -5,4 +5,3 @@ metadata:
   namespace: todoapp
 data:
   PYTHONUNBUFFERED: "1"
-  

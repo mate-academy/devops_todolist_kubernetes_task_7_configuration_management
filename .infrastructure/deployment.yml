@@ -33,11 +33,6 @@ spec:
             configMapKeyRef:
               name: todoapp-config
               key: PYTHONUNBUFFERED
-        - name: DATABASE_URL
-          valueFrom:
-            configMapKeyRef:
-              name: todoapp-config
-              key: DATABASE_URL
         - name: SECRET_KEY
           valueFrom:
             secretKeyRef:
