@@ -1,9 +1,9 @@
 ### Deployment
 
-To apply the configuration, secrets, and deploy the application, execute the following commands in this exact order:
-`kubectl apply -f configMap.yml`
-`kubectl apply -f secret.yml`
-`kubectl apply -f deployment.yml`
+To apply the configuration, secrets, and deploy the application, execute the following commands in order from the root of the repository:
+`kubectl apply -f .infrastructure/configMap.yml`
+`kubectl apply -f .infrastructure/secret.yml`
+`kubectl apply -f .infrastructure/deployment.yml`
 
 ### Validation
 
