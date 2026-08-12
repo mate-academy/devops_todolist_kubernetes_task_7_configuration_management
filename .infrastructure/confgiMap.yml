@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: myconfigmap
+  namespace: mateapp
+  labels:
+    app: myapplication
+data:
+  PYTHONUNBUFFERED: "1"
