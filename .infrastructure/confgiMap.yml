@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todoapp-config
+  namespace: mateapp
+data:
+  PYTHONUNBUFFERED: "1"
+  ENVIRONMENT: "Deployment"
+  PORT: "8080"
