@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-app-deployment
+  labels:
+    app: todo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-app
+  template:
+    metadata:
+      labels:
+        app: todo-app
+    spec:
+      containers:
+      - name: todo-app-container
+        image: leoleiden/todo-app:latest # Замініть на ім'я вашого Docker образу та тег
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: todo-app-config # Посилання на ConfigMap для PYTHONUNBUFFERED
+        env:
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: todo-app-secret # Посилання на Secret для SECRET_KEY
+              key: SECRET_KEY
