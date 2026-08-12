@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todolist-config
+  labels:
+    app: todolist
+data:
+  PYTHONUNBUFFERED: "1"
