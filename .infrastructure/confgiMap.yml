@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mate-config
+data:
+  PYTHONUNBUFFERED: "1"
