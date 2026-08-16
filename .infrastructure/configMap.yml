@@ -5,5 +5,4 @@ metadata:
   namespace: todoapp
 data:
   PYTHONUNBUFFERED: "1"
-  ENVIROMENT: "Development"
-  PORT: "8080"
+  ENVIRONMENT: "Development"
