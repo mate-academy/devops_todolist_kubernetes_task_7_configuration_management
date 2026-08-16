@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todoapp
+  namespace: todoapp
+data:
+  PYTHONUNBUFFERED: "1"
+  ENVIRONMENT: "Development"
