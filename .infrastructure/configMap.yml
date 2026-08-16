@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todoapp
+  namespace: todoapp
+data:
+  PYTHONUNBUFFERED: "1"
+  ENVIROMENT: "Development"
+  PORT: "8080"
