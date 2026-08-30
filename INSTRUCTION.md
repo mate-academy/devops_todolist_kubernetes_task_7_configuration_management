@@ -18,6 +18,10 @@
  `kubectl get pods -n mateapp`
  - checking whether the pod has the env vars:
  `kubectl exec -n mateapp <pod-name> -- env | grep -E "SECRET_KEY|PYTHONUNBUFFERED"`
-
  *If it prints the decoded key value and `PYTHONUNBUFFERED=1`, the Deployment successfully picked up both the Secret and the ConfigMap.*
+
+### 7. Checking pods health and readiness
+`kubectl exec -n mateapp <pod-name> -- curl -s http://localhost:8080/api/health`
+`kubectl exec -n mateapp <pod-name> -- curl -s http://localhost:8080/api/ready`
+
 
