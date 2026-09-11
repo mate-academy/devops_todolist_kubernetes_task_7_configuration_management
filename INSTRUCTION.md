@@ -13,7 +13,12 @@ kubectl apply -f .infrastructure/secret.yaml
 kubectl apply -f .infrastructure/configMap.yaml
 ```
 
-# 4. Validation:
+# 4. Apply deployment:
+```bash
+kubectl apply -f deployment.yml
+```
+
+# 5. Validation:
 - Validate env app via connect to any pod:
 ```bash
 kubectl exec -it POD_NAME --sh

@@ -32,7 +32,7 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: app-config
-              key: pybuff
+              key: PYTHONUNBUFFERED
         - name: SECRET_KEY
           valueFrom:
             secretKeyRef:
