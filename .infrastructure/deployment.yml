@@ -6,6 +6,7 @@ metadata:
 spec:
   strategy:
     type: RollingUpdate
+    replicas: 2
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 1
@@ -28,8 +29,17 @@ spec:
             memory: "256Mi"
             cpu: "150m"
         env:
-        - name: PYTHONUNBUFFERED
-          value: "1"
+          - name: PYTHONUNBUFFERED
+            valueFrom:
+              configMapKeyRef:
+                name: configmapname
+                key: PYTHONUNBUFFERED
+          - name: SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: secretname
+                key: SECRET_KEY
+
         ports:
         - containerPort: 8080
         livenessProbe:
