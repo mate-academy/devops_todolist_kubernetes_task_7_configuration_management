@@ -1,41 +1,60 @@
-containers:
-  - name: todoapp
-    image: ikulyk404/todoapp:3.0.0
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todoapp
+  namespace: mateapp
 
-    resources:
-      requests:
-        memory: "256Mi"
-        cpu: "150m"
-      limits:
-        memory: "256Mi"
-        cpu: "150m"
+spec:
+  replicas: 1
 
-    env:
-      - name: PYTHONUNBUFFERED
-        valueFrom:
-          configMapKeyRef:
-            name: todoapp-config
-            key: PYTHONUNBUFFERED
+  selector:
+    matchLabels:
+      app: todoapp
 
-      - name: SECRET_KEY
-        valueFrom:
-          secretKeyRef:
-            name: todoapp-secret
-            key: SECRET_KEY
+  template:
+    metadata:
+      labels:
+        app: todoapp
 
-    ports:
-      - containerPort: 8080
+    spec:
+      containers:
+        - name: todoapp
+          image: ikulyk404/todoapp:3.0.0
 
-    livenessProbe:
-      httpGet:
-        path: api/health
-        port: 8080
-      initialDelaySeconds: 60
-      periodSeconds: 5
+          env:
+            - name: PYTHONUNBUFFERED
+              valueFrom:
+                configMapKeyRef:
+                  name: todoapp-config
+                  key: PYTHONUNBUFFERED
 
-    readinessProbe:
-      httpGet:
-        path: api/ready
-        port: 8080
-      initialDelaySeconds: 5
-      periodSeconds: 5
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: todoapp-secret
+                  key: SECRET_KEY
+
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "150m"
+            limits:
+              memory: "256Mi"
+              cpu: "150m"
+
+          ports:
+            - containerPort: 8080
+
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 5
+
+          readinessProbe:
+            httpGet:
+              path: /api/ready
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
