@@ -1,10 +1,10 @@
 To apply all changes run:
 ```
 # Apply configMap
-kubectl apply -f .infrastructure/configMap.yml
+kubectl apply -f configMap.yml
 
 # Apply secrets
-kubectl apply -f .infrastructure/secret.yml
+kubectl apply -f secret.yml
 
 # Apply changes to deployment
 kubectl apply -f .infrastructure/deployment.yml
