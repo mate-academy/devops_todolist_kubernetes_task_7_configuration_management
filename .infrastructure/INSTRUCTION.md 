@@ -1,0 +1,27 @@
+## Instructions for launching the program and verifying (validating) changes.
+
+ 1. From the folder .infrastructure execute the command:
+```
+kubectl apply -f namespace.yml 
+```
+This will create a namespace for the program ToDo.
+
+ 2. To make it easier to work with the context later, set the default context for the newly created namespace by running the following command::
+```
+kubectl config set-context --current --namespace=todoapp
+```
+
+ 3. Next, apply all the manifests in the folder using the following command:
+```
+kubectl apply -f .
+```
+
+### To verify that the variables were successfully passed, connect to one of the pods using the command:
+```
+kubectl exec -it <pod-name> -- sh
+```
+In interactive mode, enter the command to view these variables:
+```
+printenv
+```
+**See the relevant variables: SECRET_KEY and PYTHONUNBUFFERED, respectively.**
