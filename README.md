@@ -19,7 +19,10 @@ Create a database schema:
 python manage.py migrate
 ```
 
-And then start the server (default is http://localhost:8000):
+Set `SECRET_KEY` in the environment before starting the server (in PowerShell,
+for example: `$env:SECRET_KEY = "set-a-local-development-key"`).
+
+Then start the server (default is http://localhost:8000):
 
 ```
 python manage.py runserver
